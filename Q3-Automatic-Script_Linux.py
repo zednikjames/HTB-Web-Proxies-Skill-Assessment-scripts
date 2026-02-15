@@ -17,7 +17,7 @@ MD5_STR = input("Please provide the string from the md5 that you decoded: ")
 
 print(f"File will be saved at: {FILE_PATH}\n")
 
-DEFAULT_PATH = CWD+"/"+"SecList"+"/SecLists/Fuzzing"
+DEFAULT_PATH = CWD+"/SecLists/Fuzzing/alphanum-case.txt"
 
 fd = open(FILE_PATH,'wb')
 
@@ -29,4 +29,5 @@ for char in DEFAULT_PATH:
     fd.write(hexed_string + b"\n")
 
 print("Writing file...\n")
+fd.close()
 print("Done")

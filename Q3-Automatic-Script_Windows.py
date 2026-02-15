@@ -11,4 +11,23 @@ print("-"*80)
 
 CWD = os.getcwd()
 
-SECLIST_PATH = CWD+"\\"+"SecLists"+"\\"+"Fuzzing"+"\\"+"alphanum-case.txt"
+SECLIST_PATH = open(CWD+"\\SecLists\\Fuzzing\\alphanum-case.txt", "r")
+
+FILE_PATH = input("Please input a name for the file to save all the strings too: ")
+MD5_STRING = input("Please input the MD5 hash from burp suite: ")
+
+
+DEFAULT_PATH = CWD+"/SecLists/Fuzzing/alphanum-case.txt"
+
+fd = open(FILE_PATH,'wb')
+
+for char in DEFAULT_PATH:
+    fuzzed_string = MD5_STRING+"FUZZ"
+
+    b64_string = base64.b64encode(fuzzed_string.replace("FUZZ", char).encode("utf-8"))
+    hexed_string = binascii.hexlify(b64_string)
+    fd.write(hexed_string + b"\n")
+
+print("Writing file...")
+fd.close()
+print("Done")
